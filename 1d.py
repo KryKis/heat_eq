@@ -4,14 +4,16 @@ import time
 import matplotlib.pyplot as plt
 from matplotlib import animation
 
-arry = [0. for _ in range(101)]
-arrx = [i for i in range(101)]
-arry[50] = 1.
+SIZE = 101
+
+arry = [0. for _ in range(SIZE)]
+arrx = [i for i in range(SIZE)]
+arry[int(SIZE/2)] = 1.
 s = np.array(arrx)
 start = np.array(arry)
 
 fig = plt.figure()
-ax = plt.axes(xlim=(0, 101), ylim=(0, 1))
+ax = plt.axes(xlim=(0, SIZE), ylim=(0, 1))
 line, = ax.plot([], [], lw=2)
 
 def init():
@@ -20,7 +22,7 @@ def init():
 
 def animate(i):
     global start
-    start = step(start, 0.1)
+    start = step(start, 0.01)
     line.set_data(s, start)
     return line,
 
